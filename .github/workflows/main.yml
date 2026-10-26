@@ -1,0 +1,56 @@
+
+name: MECOX AI STUDIO APK
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "*.html"
+      - ".github/workflows/main.yml"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Get project
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+
+      - name: Prepare app
+        run: |
+          mkdir -p www
+          HTML=$(find . -maxdepth 1 -name '*.html' -print -quit)
+          if [ -z "$HTML" ]; then
+            echo "No HTML file found in repository root"
+            exit 1
+          fi
+          cp "$HTML" www/index.html
+          npm init -y
+          npm install @capacitor/core @capacitor/cli @capacitor/android
+          npx cap init "MECOX AI STUDIO" "com.mecox.aistudio" --web-dir www
+          npx cap add android
+          npx cap sync android
+
+      - name: Build APK
+        run: |
+          cd android
+          chmod +x gradlew
+          ./gradlew assembleDebug
+
+      - name: Save APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: MECOX-AI-STUDIO-APK
+          path: android/app/build/outputs/apk/debug/app-debug.apk
+          
