@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#080b16">
+<title>MECOX AI STUDIO</title>
+<style>
+:root{--bg:#080b16;--panel:#11172a;--panel2:#151d33;--line:#27314c;--text:#f3f6ff;--muted:#9aa8c7;--blue:#4da3ff;--purple:#a66bff;--green:#4df0b2}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 15% 0%,#18214a 0,transparent 42%),radial-gradient(ellipse at 95% 30%,#24133d 0,transparent 35%),var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Noto Sans Bengali",sans-serif;min-height:100vh}
+button,input,textarea{font:inherit}button{cursor:pointer;color:inherit}.app{max-width:1000px;margin:auto;padding:18px 14px 96px}
+header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:20px}.brand{display:flex;align-items:center;gap:10px}.logo{width:44px;height:44px;border-radius:15px;display:grid;place-items:center;font-weight:900;background:linear-gradient(135deg,var(--blue),var(--purple));box-shadow:0 0 25px #6a75ff55}.brand h1{font-size:17px;letter-spacing:1px;margin:0}.brand p{margin:3px 0 0;color:var(--muted);font-size:11px}.status{font-size:11px;border:1px solid #285d54;background:#102a2a;color:var(--green);border-radius:99px;padding:7px 10px}
+.hero{padding:22px 18px;border:1px solid #39456a;border-radius:24px;background:linear-gradient(130deg,#182647dd,#211638dd);position:relative;overflow:hidden}.eyebrow{font-size:11px;letter-spacing:2px;color:#9dbbff}.hero h2{font-size:27px;line-height:1.25;margin:9px 0}.hero p{color:#b9c4df;font-size:13px;line-height:1.65;margin:0 0 16px}.hero-actions{display:flex;gap:9px;flex-wrap:wrap}.primary,.secondary,.iconbtn{border:0;border-radius:13px;padding:11px 14px;font-weight:700}.primary{background:linear-gradient(100deg,var(--blue),var(--purple));color:white}.secondary{background:#202b47;border:1px solid #384568}.small{font-size:12px;color:var(--muted);margin-top:12px}
+.section-title{display:flex;align-items:center;justify-content:space-between;margin:23px 2px 12px}.section-title h3{font-size:16px;margin:0}.section-title span{font-size:11px;color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.tile{background:linear-gradient(145deg,#151d33,#0f1425);border:1px solid var(--line);border-radius:18px;padding:15px 13px;min-height:116px;text-align:left;transition:.15s}.tile:active{transform:scale(.98)}.tile .emoji{font-size:23px}.tile h4{margin:8px 0 4px;font-size:14px}.tile p{margin:0;font-size:11px;line-height:1.5;color:var(--muted)}
+.panel{background:#0e1425eF;border:1px solid var(--line);border-radius:20px;padding:16px;margin-top:14px}.panel h3{margin:0 0 10px;font-size:16px}.muted{color:var(--muted);font-size:12px;line-height:1.6}
+.quick{display:flex;gap:8px;overflow:auto;padding:3px 0 8px}.quick button{white-space:nowrap;border:1px solid var(--line);background:#171f35;border-radius:99px;padding:8px 11px;font-size:12px}
+.chatlog{display:flex;flex-direction:column;gap:10px;max-height:300px;overflow:auto;margin:10px 0}.bubble{max-width:90%;padding:11px 12px;border-radius:14px;font-size:13px;line-height:1.6;white-space:pre-wrap}.bot{align-self:flex-start;background:#19233b;border:1px solid #2b3a5e}.user{align-self:flex-end;background:#25375c}.composer{display:flex;gap:8px}.composer textarea{flex:1;min-width:0;resize:vertical;min-height:46px;max-height:120px;background:#090e1c;border:1px solid #34405e;border-radius:13px;color:var(--text);padding:12px;outline:none}.iconbtn{background:#1b2844;border:1px solid #344568;padding:10px}.notice{padding:11px 12px;background:#17261f;border:1px solid #28523e;color:#b8f8d9;border-radius:12px;font-size:12px;line-height:1.6}
+.tools{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.tool{padding:12px;border-radius:13px;background:#151d32;border:1px solid var(--line);font-size:12px;text-align:left}
+.bottom{position:fixed;bottom:0;left:0;right:0;background:#080b16ee;backdrop-filter:blur(18px);border-top:1px solid #222b43;padding:10px max(12px,env(safe-area-inset-right)) calc(10px + env(safe-area-inset-bottom));display:flex;justify-content:center;gap:8px;z-index:5}.bottom button{flex:1;max-width:180px;border:0;background:transparent;color:var(--muted);font-size:11px;padding:7px 3px;border-radius:10px}.bottom button.active{color:white;background:#1a2540}.bottom b{display:block;font-size:19px;margin-bottom:2px}
+input[type=text]{width:100%;background:#090e1c;border:1px solid #34405e;color:white;padding:12px;border-radius:12px;margin:5px 0 10px}.item{padding:11px 0;border-bottom:1px solid #222b43;font-size:13px;overflow-wrap:anywhere}.item:last-child{border:0}.hidden{display:none!important}
+@media(min-width:650px){.grid{grid-template-columns:repeat(4,minmax(0,1fr))}.hero h2{font-size:34px}.app{padding-top:25px}.tools{grid-template-columns:repeat(3,minmax(0,1fr))}}
+</style>
+</head>
+<body>
+<div class="app">
+<header>
+ <div class="brand"><div class="logo">M</div><div><h1>MECOX AI STUDIO</h1><p>CREATE · AUTOMATE · EVOLVE</p></div></div>
+ <div class="status">● Prototype</div>
+</header>
+<main id="homePage">
+ <section class="hero">
+  <div class="eyebrow">YOUR CREATIVE AI WORKSPACE</div>
+  <h2>তোমার আইডিয়া।<br>তোমার AI Studio.</h2>
+  <p>ভয়েস বা লেখা দিয়ে কাজের নির্দেশ দাও। এক জায়গায় রাখো তোমার AI tools, projects ও knowledge.</p>
+  <div class="hero-actions"><button class="primary" onclick="go('assistantPage')">✦ AI Assistant খুলুন</button><button class="secondary" onclick="startVoice()">🎙️ কথা বলুন</button></div>
+  <div class="small">প্রথম সংস্করণ · মোবাইল-উপযোগী · ডেমো মোড</div>
+ </section>
+ <div class="section-title"><h3>AI Departments</h3><span>৮টি বিভাগ</span></div>
+ <div class="grid">
+  <button class="tile" onclick="openDept('office')"><div class="emoji">📝</div><h4>Office AI</h4><p>ডকুমেন্ট, রিপোর্ট, PDF-এর পরিকল্পনা</p></button>
+  <button class="tile" onclick="openDept('graphics')"><div class="emoji">🎨</div><h4>Graphics Studio</h4><p>ছবি, লোগো ও থাম্বনেইল</p></button>
+  <button class="tile" onclick="openDept('video')"><div class="emoji">🎬</div><h4>Video Studio</h4><p>ভিডিও এডিটিং ও সাবটাইটেল</p></button>
+  <button class="tile" onclick="openDept('3d')"><div class="emoji">🧊</div><h4>3D Studio</h4><p>মডেল ও অ্যানিমেশন পরিকল্পনা</p></button>
+  <button class="tile" onclick="openDept('coding')"><div class="emoji">💻</div><h4>Coding AI</h4><p>ওয়েবসাইট, অ্যাপ ও গেম কোড</p></button>
+  <button class="tile" onclick="openDept('mobile')"><div class="emoji">📱</div><h4>Mobile Agent</h4><p>সমর্থিত অ্যাপ ও অটোমেশন</p></button>
+  <button class="tile" onclick="openDept('research')"><div class="emoji">🌐</div><h4>Research AI</h4><p>তথ্য অনুসন্ধান ও সারাংশ</p></button>
+  <button class="tile" onclick="openDept('builder')"><div class="emoji">🧩</div><h4>AI App Builder</h4><p>নতুন ফিচারের পরিকল্পনা</p></button>
+ </div>
+ <section class="panel"><h3>⚡ Quick Actions</h3><div class="tools">
+  <button class="tool" onclick="preset('আমার YouTube ভিডিওর জন্য একটি থাম্বনেইলের ধারণা তৈরি করো।')">🎯 Thumbnail Idea</button>
+  <button class="tool" onclick="preset('আমার ভিডিওর জন্য বাংলা সাবটাইটেল তৈরির workflow দাও।')">💬 Subtitle Workflow</button>
+  <button class="tool" onclick="preset('আমার প্রজেক্টের জন্য একটি নতুন ফিচারের পরিকল্পনা করো।')">🛠️ Plan a Feature</button>
+ </div></section>
+</main>
+<section id="assistantPage" class="hidden">
+ <div class="section-title"><h3>🤖 MECOX Assistant</h3><span>Text + Voice</span></div>
+ <div class="panel"><div class="notice">এটি এখন UI prototype। AI API যুক্ত না করা পর্যন্ত উত্তরগুলো ডেমো-ভিত্তিক হবে।</div>
+  <div id="chatlog" class="chatlog"><div class="bubble bot">হ্যালো! আমি MECOX-এর ডেমো সহকারী। কী করতে চাও লিখে পাঠাও অথবা মাইক্রোফোন চাপো।</div></div>
+  <div class="composer"><textarea id="prompt" placeholder="বাংলায় নির্দেশ লিখুন…" rows="2"></textarea><button class="iconbtn" onclick="startVoice()" aria-label="Voice input">🎙️</button><button class="primary" onclick="sendPrompt()">পাঠান</button></div>
+  <p class="muted">ভয়েস ইনপুট ব্রাউজার সমর্থন করলে কাজ করবে। AI উত্তর, ফোন নিয়ন্ত্রণ ও বাহ্যিক অ্যাপের অটোমেশন এখনও যুক্ত করা হয়নি।</p>
+ </div>
+</section>
+<section id="knowledgePage" class="hidden">
+ <div class="section-title"><h3>📚 Knowledge Vault</h3><span>লোকাল ডেমো</span></div>
+ <div class="panel"><p class="muted">নিজের নোট যোগ করো। এই প্রোটোটাইপে তথ্য এই ব্রাউজারের localStorage-এ থাকে; এটি অনলাইন AI ডেটাবেস নয়।</p>
+ <label class="muted" for="noteTitle">নোটের নাম</label><input id="noteTitle" type="text" placeholder="যেমন: Game project ideas">
+ <label class="muted" for="noteBody">তথ্য / নোট</label><textarea id="noteBody" rows="4" style="width:100%;background:#090e1c;color:white;border:1px solid #34405e;border-radius:12px;padding:12px" placeholder="এখানে তথ্য লিখুন…"></textarea>
+ <button class="primary" style="margin-top:10px" onclick="saveNote()">＋ নোট সংরক্ষণ</button>
+ <input id="searchNotes" type="text" placeholder="🔎 নোট খুঁজুন…" oninput="renderNotes()"><div id="notesList"></div></div>
+</section>
+<section id="settingsPage" class="hidden">
+ <div class="section-title"><h3>⚙️ Settings & Roadmap</h3></div>
+ <div class="panel"><h3>বর্তমান অবস্থা</h3><div class="item">✅ Responsive dashboard UI</div><div class="item">✅ Demo chat interaction</div><div class="item">✅ Browser voice input (supported browsers)</div><div class="item">✅ Local notes / search</div><div class="item">⏳ Real AI API connection</div><div class="item">⏳ Image/video generation integrations</div><div class="item">⏳ Android app intents / approved automation</div><div class="item">⏳ Secure AI code builder and deployment</div>
+ <p class="muted">API key কখনও HTML/JavaScript ফাইলে প্রকাশ্যে রাখবে না। বাস্তব AI সংযোগের জন্য নিরাপদ backend দরকার।</p></div>
+</section>
+<section id="departmentPage" class="hidden">
+ <div class="section-title"><h3 id="deptTitle">Department</h3><span>MECOX workspace</span></div>
+ <div class="panel"><p id="deptDesc" class="muted"></p><label class="muted" for="deptTask">কী করতে চাও?</label><textarea id="deptTask" rows="3" style="width:100%;background:#090e1c;color:white;border:1px solid #34405e;border-radius:12px;padding:12px" placeholder="তোমার কাজ লিখুন…"></textarea><button class="primary" style="margin-top:10px" onclick="deptSubmit()">কাজের পরিকল্পনা তৈরি</button><div id="deptResult" class="item"></div><p class="muted">এই সংস্করণে এটি পরিকল্পনা/ডেমো তৈরি করবে; প্রকৃত AI সার্ভিস সংযুক্ত নয়।</p></div>
+</section>
+</div>
+<nav class="bottom">
+ <button class="active" data-page="homePage" onclick="go('homePage',this)"><b>⌂</b>Home</button>
+ <button data-page="assistantPage" onclick="go('assistantPage',this)"><b>✦</b>Assistant</button>
+ <button data-page="knowledgePage" onclick="go('knowledgePage',this)"><b>▤</b>Knowledge</button>
+ <button data-page="settingsPage" onclick="go('settingsPage',this)"><b>⚙</b>Settings</button>
+</nav>
+<script>
+const pages=['homePage','assistantPage','knowledgePage','settingsPage','departmentPage'];
+function go(id,btn){pages.forEach(p=>document.getElementById(p).classList.toggle('hidden',p!==id));document.querySelectorAll('.bottom button').forEach(b=>b.classList.toggle('active',b===btn || (!btn && b.dataset.page===id)));window.scrollTo({top:0,behavior:'smooth'});}
+function addBubble(text,who='bot'){const el=document.createElement('div');el.className='bubble '+who;el.textContent=text;document.getElementById('chatlog').appendChild(el);document.getElementById('chatlog').scrollTop=99999;}
+function preset(t){document.getElementById('prompt').value=t;go('assistantPage');}
+function sendPrompt(){const box=document.getElementById('prompt'),t=box.value.trim();if(!t)return;addBubble(t,'user');box.value='';let answer='আমি তোমার নির্দেশ পেয়েছি। এই প্রোটোটাইপে বাস্তব AI সংযুক্ত নেই, তাই এখন সরাসরি কাজটি করতে পারি না। পরবর্তী ধাপে নিরাপদ AI API যুক্ত করতে হবে।\n\nপ্রাথমিক পরিকল্পনা: নির্দেশটি পরিষ্কার করা → প্রয়োজনীয় টুল নির্বাচন → কাজের আগে অনুমতি নেওয়া → ফলাফল যাচাই করা।';if(/youtube|ইউটিউব|খোলো|open/i.test(t))answer='ডেমো: এই কাজের জন্য Android app intent বা ব্রাউজার লিংক খোলার ব্যবস্থা যোগ করা যাবে। এই HTML প্রোটোটাইপ এখন নিজে থেকে অন্য অ্যাপ নিয়ন্ত্রণ করে না।';if(/ফিচার|feature|আপডেট|update/i.test(t))answer='ডেমো App Builder: ১) ফিচারের চাহিদা লিখে রাখো ২) UI ও কোড তৈরি ৩) নিরাপদ পরীক্ষার পরিবেশে পরীক্ষা ৪) পরিবর্তন পর্যালোচনা ৫) তোমার অনুমোদনের পর প্রকাশ।';setTimeout(()=>addBubble(answer),250);}
+document.getElementById('prompt').addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendPrompt();}});
+function startVoice(){const SR=window.SpeechRecognition||window.webkitSpeechRecognition;if(!SR){alert('এই ব্রাউজারে voice recognition সমর্থিত নয়। Chrome-এর সমর্থিত সংস্করণে চেষ্টা করো অথবা টাইপ করো।');return;}const rec=new SR();rec.lang='bn-BD';rec.interimResults=false;rec.maxAlternatives=1;rec.onresult=e=>{document.getElementById('prompt').value=e.results[0][0].transcript;go('assistantPage');};rec.onerror=()=>alert('ভয়েস নেওয়া যায়নি। মাইক্রোফোনের অনুমতি পরীক্ষা করো।');rec.start();}
+const depts={office:['📝 Office AI','ডকুমেন্ট, রিপোর্ট, চিঠি ও PDF-এর জন্য খসড়া ও workflow পরিকল্পনা।'],graphics:['🎨 Graphics Studio','ছবি, লোগো, পোস্টার ও YouTube থাম্বনেইলের জন্য prompt ও editing workflow।'],video:['🎬 Video Studio','ভিডিও কাটিং, সাবটাইটেল, অডিও ও export workflow পরিকল্পনা।'], '3d':['🧊 3D Studio','3D মডেল, দৃশ্য, অ্যানিমেশন ও rendering-এর পরিকল্পনা।'],coding:['💻 Coding AI','ওয়েবসাইট, অ্যাপ ও গেমের কোডের পরিকল্পনা ও debugging workflow।'],mobile:['📱 Mobile Agent','Android-এর অনুমোদিত intents ও automation-এর জন্য কাজের পরিকল্পনা।'],research:['🌐 Research AI','তথ্য অনুসন্ধান, উৎস যাচাই, সারাংশ ও Knowledge Vault-এ সংরক্ষণের পরিকল্পনা।'],builder:['🧩 AI App Builder','নতুন ফিচারের চাহিদা, কোড, পরীক্ষা, ব্যাকআপ ও অনুমোদিত release workflow।']};
+function openDept(k){document.getElementById('deptTitle').textContent=depts[k][0];document.getElementById('deptDesc').textContent=depts[k][1];document.getElementById('deptTask').value='';document.getElementById('deptResult').textContent='';go('departmentPage');}
+function deptSubmit(){const t=document.getElementById('deptTask').value.trim();if(!t){alert('আগে কাজটি লিখুন।');return;}document.getElementById('deptResult').textContent='ডেমো পরিকল্পনা: '+t+'\n\nপরবর্তী ধাপ: ইনপুট যাচাই → প্রয়োজনীয় টুল নির্বাচন → খসড়া/ফাইল তৈরি → পরীক্ষা → ফলাফল দেখানো। বাস্তব কাজের জন্য সংশ্লিষ্ট AI/service সংযোগ করতে হবে।';}
+function getNotes(){try{return JSON.parse(localStorage.getItem('mecox_notes')||'[]')}catch(e){return[]}}
+function saveNote(){const title=document.getElementById('noteTitle').value.trim(),body=document.getElementById('noteBody').value.trim();if(!title||!body){alert('নোটের নাম ও তথ্য—দুটিই লিখুন।');return;}const notes=getNotes();notes.unshift({id:Date.now(),title,body,date:new Date().toLocaleString()});localStorage.setItem('mecox_notes',JSON.stringify(notes));document.getElementById('noteTitle').value='';document.getElementById('noteBody').value='';renderNotes();}
+function renderNotes(){const q=(document.getElementById('searchNotes')?.value||'').toLowerCase();const list=document.getElementById('notesList');if(!list)return;list.innerHTML='';getNotes().filter(n=>(n.title+' '+n.body).toLowerCase().includes(q)).forEach(n=>{const d=document.createElement('div');d.className='item';const title=document.createElement('strong');title.textContent=n.title;const body=document.createElement('p');body.className='muted';body.textContent=n.body;const date=document.createElement('small');date.className='muted';date.textContent=n.date;const del=document.createElement('button');del.className='secondary';del.style.marginTop='8px';del.textContent='মুছুন';del.onclick=()=>{localStorage.setItem('mecox_notes',JSON.stringify(getNotes().filter(x=>x.id!==n.id)));renderNotes();};d.append(title,date,body,del);list.appendChild(d);});if(!list.children.length)list.innerHTML='<p class="muted">এখনও কোনো নোট নেই।</p>';}
+renderNotes();
+</script>
+</body>
+</html>
